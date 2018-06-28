@@ -1,0 +1,30 @@
+{
+  "name": "food-tracker",
+  "version": "1.0.0",
+  "description": "A food tracker for the fitness guys out there.",
+  "main": "index.js",
+  "scripts": {
+    "serve": "live-server public",
+    "dev-server": "webpack-dev-server --mode development",
+    "build": "webpack --mode production",
+    "test": "mocha"
+  },
+  "author": "Marco Braun",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^5.1.1",
+    "webpack-dev-server": "^3.1.4"
+  },
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "live-server": "^1.2.0",
+    "moment": "^2.22.1",
+    "uuid": "^3.2.1",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.3"
+  }
+}
