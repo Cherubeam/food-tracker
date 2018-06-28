@@ -18,15 +18,6 @@
 			<form id="add-food">
 				<h2>Add new food</h2>
 				<label>
-					Meal
-					<select name="selectMeal" id="select-meal" class="dropdown">
-						<option value="breakfast">Breakfast</option>
-						<option value="lunch">Lunch</option>
-						<option value="dinner">Dinner</option>
-						<option value="snack">Snack</option>
-					</select>
-				</label>
-				<label>
 					Brand
 					<input id="add-brand-name" type="text" placeholder="Brand name" name="brandName" autofocus>
 				</label>
@@ -72,6 +63,15 @@
 			<h2>Today</h2>
 			<div id="today"></div>
 			<form id="add-food-today">
+				<label>
+					Meal
+					<select name="selectMeal" id="select-meal" class="dropdown">
+						<option value="breakfast">Breakfast</option>
+						<option value="lunch">Lunch</option>
+						<option value="dinner">Dinner</option>
+						<option value="snack">Snack</option>
+					</select>
+				</label>
 				<select name="selectFood" id="select-food-today" class="dropdown"></select>
 				<input type="submit" value="Save">
 			</form>

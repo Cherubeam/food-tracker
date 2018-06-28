@@ -20,24 +20,26 @@ renderFoods()
 // Render dished initially
 renderDishes()
 
+// Add food to today object and save it
 document.querySelector('#add-food-today').addEventListener('submit', e => {
 
 	e.preventDefault()
 
-	// Getting the values of the select field
+	// Getting the values of the select fields
+	const selectedMeal = document.getElementById('select-meal')
+	const selectedMealText = selectedMeal.options[selectedMeal.selectedIndex].text
 	const selectedFood = document.getElementById('select-food-today')
-	console.log(selectedFood)
 	const selectedFoodText = selectedFood.options[selectedFood.selectedIndex].text
 	const foods = getFoods()
-	let foodId
+	let food
 
-	foods.forEach(food => {
-		if (selectedFoodText === food.food._name) {
-			foodId = food.food._id
+	foods.forEach(element => {
+		if (selectedFoodText === element.food._name) {
+			food = element.food
 		}
 	})
 
-	// updateDay()
+	updateDay(food, selectedMealText)
 	renderToday()
 })
 
@@ -46,11 +48,7 @@ document.querySelector('#add-food').addEventListener('submit', e => {
 
 	e.preventDefault()
 
-	// !!! RESTRUCTURING SINCE SELECET MEAL WILL BE REMOVED FROM FOODS OBJECT !!!
-
-	// Getting the values of the input and select fields
-	const selectedMeal = document.getElementById('select-meal')
-	const selectedMealText = selectedMeal.options[selectedMeal.selectedIndex].text
+	// Getting the values of the input field
 	const brandName = e.target.elements.brandName.value
 	const foodName = e.target.elements.foodName.value
 	const calories = parseFloat(e.target.elements.calories.value)

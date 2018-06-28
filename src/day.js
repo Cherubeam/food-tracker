@@ -14,7 +14,7 @@ class Day {
             breakfast: [],
             lunch: [],
             dinner: [],
-            snacks: []
+            snack: []
         } || meals
     }
 
@@ -50,19 +50,19 @@ class Day {
         return moment(this._timestamp).fromNow()
     }
 
-    setMeals(food, meal) {
+    setMeal(food, meal) {
         switch(meal) {
-            case 'breakfast':
-                this.meals.breakfast.push(food)
+            case 'Breakfast':
+                this._meals.breakfast.push(food)
                 break
-            case 'lunch':
-                this.meals.lunch.push(food)
+            case 'Lunch':
+                this._meals.lunch.push(food)
                 break
-            case 'dinner':
-                this.meals.dinner.push(food)
+            case 'Dinner':
+                this._meals.dinner.push(food)
                 break
-            case 'snacks':
-                this.meals.snacks.push(food)
+            case 'Snack':
+                this._meals.snack.push(food)
                 break
             default:
                 throwIfMealInvalid()
@@ -70,22 +70,22 @@ class Day {
     }
 }
 
-const today = new Day()
-console.log(today)
+// const today = new Day()
+// console.log(today)
 
-today.setMeals({
-    name: 'Lecker Essen'
-}, 'dinner')
+// today.setMeals({
+//     name: 'Lecker Essen'
+// }, 'dinner')
 
-today.setMeals({
-    name: 'Lecker Snack'
-}, 'snacks')
-console.log(today)
+// today.setMeals({
+//     name: 'Lecker Snack'
+// }, 'snacks')
+// console.log(today)
 
-console.log(today.fromNow)
+// console.log(today.fromNow)
 
-console.log(today.year)
+// console.log(today.year)
 
-console.log(today.date)
+// console.log(today.date)
 
 export { Day as default }
