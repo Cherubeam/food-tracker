@@ -11,6 +11,9 @@ import { throwIfFoodNameMissing, throwIfDishNameMissing, throwIfCaloriesMissing,
 const today = new Day()
 createDay(today)
 
+console.log('-+-+-+-+- Create today instance at index.js +-+-+-+-')
+console.log(today)
+
 // Render today intially
 renderToday()
 
@@ -34,7 +37,7 @@ document.querySelector('#add-food-today').addEventListener('submit', e => {
 	let food
 
 	foods.forEach(element => {
-		if (selectedFoodText === element.food._name) {
+		if (selectedFoodText === element.name) {
 			food = element.food
 		}
 	})
@@ -84,7 +87,7 @@ document.querySelector('#add-food').addEventListener('submit', e => {
 	// Create a new instance of Food
 	const food = new Food(null, null, null, null, brandName, foodName, calories, protein, carbohydrate, fat)
 
-	createFood(food, selectedMealText)
+	createFood(food)
 	resetFoodForm(e)
 	renderFoods()
 	renderDishes()

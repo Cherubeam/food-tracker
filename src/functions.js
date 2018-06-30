@@ -1,3 +1,5 @@
+// Currently not used anywhere
+
 // Count all calories
 const countCaloriesTotal = (breakfast, lunch, dinner, snack) => {
     let breakfastCalories = 0;

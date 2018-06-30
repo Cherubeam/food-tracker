@@ -2,7 +2,7 @@ import moment from 'moment'
 import { throwIfMealInvalid } from './errorMessages'
 
 class Day {
-    constructor(timestamp, day, week, month, year, date, meals) {
+    constructor(timestamp, day, week, month, year, date) {
         this._timestamp = timestamp || moment().valueOf()
         this._day = day || moment().format('DD')
         this._weekday = day || moment().format('dddd')
@@ -15,7 +15,7 @@ class Day {
             lunch: [],
             dinner: [],
             snack: []
-        } || meals
+        }
     }
 
     get day() {
@@ -69,23 +69,5 @@ class Day {
         }
     }
 }
-
-// const today = new Day()
-// console.log(today)
-
-// today.setMeals({
-//     name: 'Lecker Essen'
-// }, 'dinner')
-
-// today.setMeals({
-//     name: 'Lecker Snack'
-// }, 'snacks')
-// console.log(today)
-
-// console.log(today.fromNow)
-
-// console.log(today.year)
-
-// console.log(today.date)
 
 export { Day as default }

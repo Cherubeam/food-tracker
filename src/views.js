@@ -1,14 +1,13 @@
-import Day from './day'
 import { getFoods, removeFood } from './foodFunctions'
 import { getDishes } from './dishFunctions'
-import { getDay } from './dayFunctions'
+import { getDays } from './dayFunctions'
 
 // Generate the DOM structure for today
 const generateTodayDOM = () => {
-    const today = getDay()
+    const today = getDays()
     const todayElement = document.createElement('a')
     const todayDateElement = document.createElement('p') 
-    todayDateElement.textContent = `${today.weekday}, ${today.date}`
+    todayDateElement.textContent = `${today[0]._weekday}, ${today[0]._date}` // Adapt to .weekday, .date after implementing the parsing into the class constructure function
 
     todayElement.appendChild(todayDateElement)
 
@@ -25,20 +24,20 @@ const generateFoodDOM = food => {
     const fatElement = document.createElement('li')
 
     // Display the food name
-    nameElement.textContent = food.food._name
+    nameElement.textContent = food._name
     foodElement.appendChild(nameElement)
 
     // Display the macronutrients
-    proteinElement.textContent = `Protein: ${food.food._protein}g` // food.food.protein
-    carbohydrateElement.textContent = `Carbohydrate: ${food.food._carbohydrate}g`
-    fatElement.textContent = `Fat: ${food.food._fat}g`
+    proteinElement.textContent = `Protein: ${food.protein}g`
+    carbohydrateElement.textContent = `Carbohydrate: ${food.carbohydrate}g`
+    fatElement.textContent = `Fat: ${food.fat}g`
     macrosElement.appendChild(proteinElement)
     macrosElement.appendChild(carbohydrateElement)
     macrosElement.appendChild(fatElement)
     foodElement.appendChild(macrosElement)
 
     // Setup the link for the food edit page
-    foodElement.setAttribute('href', `/edit-food.html#${food.food._id}`)
+    foodElement.setAttribute('href', `/edit-food.html#${food._id}`)
 
     return foodElement
 }
@@ -49,8 +48,8 @@ const generateFoodDropdownDOM = (foods, querySelector) => {
         const optionElement = document.createElement('option')
         const selectElement = document.querySelector(querySelector)
 
-        optionElement.textContent = food.food._name
-        optionElement.value = food.food._id
+        optionElement.textContent = food.name
+        optionElement.value = food.id
 
         selectElement.appendChild(optionElement)
     })
@@ -66,7 +65,7 @@ const generateDishDOM = (dish, foods) => {
     // Get every food added to the dish and add it to the DOM
     foods.forEach(food => {
         dish._foodIds.forEach(foodId => { // !!! _foodIds has to be changed to foodIds after Getters / Setters are working !!!
-            if (foodId === food.food._id) {
+            if (foodId === food._id) {
                 const foodElement = generateFoodDOM(food)
                 foodListElement.appendChild(foodElement)
                 foodsListElement.appendChild(foodListElement)
@@ -91,6 +90,7 @@ const generateDishDOM = (dish, foods) => {
 const renderToday = () => {
     const todayElement = document.querySelector('#today')
     const foods = getFoods()
+    // getDays()
 
     todayElement.innerHTML = ''
     const todayDOMElement = generateTodayDOM()
@@ -103,7 +103,7 @@ const renderToday = () => {
 const renderFoods = () => {
     const groceriesElement = document.querySelector('#groceries')
     const foods = getFoods()
-
+    console.log(foods)
     groceriesElement.innerHTML = ''
 
     foods.forEach(food => {
@@ -134,25 +134,24 @@ const renderDishes = () => {
 // Initialize the food edit page
 const initializeFoodEditPage = foodId => {
     const foods = getFoods()
-    const foodIndex = foods.findIndex(index => foodId === index.food._id)
+    const foodIndex = foods.findIndex(food => foodId === food.id)
 
-    document.getElementById('edit-ean').value = foods[foodIndex].food.ean
-    document.getElementById('edit-brand-name').value = foods[foodIndex].food.brand
-    document.getElementById('edit-food-name').value = foods[foodIndex].food.name
-    document.getElementById('edit-calories').value = foods[foodIndex].food.calories
-    document.getElementById('edit-protein').value = foods[foodIndex].food.protein
-    document.getElementById('edit-carbohydrate').value = foods[foodIndex].food.carbohydrate
-    document.getElementById('edit-fat').value = foods[foodIndex].food.fat
-
-    document.getElementById('edit-saturated-fat').value = foods[foodIndex].food.saturatedFat
-    document.getElementById('edit-multiple-unsaturated-fat').value = foods[foodIndex].food.multipleUnsaturatedFat
-    document.getElementById('edit-basic-unsaturated-fat').value = foods[foodIndex].food.basicUnsaturatedFat
-    document.getElementById('edit-trans-fat').value = foods[foodIndex].food.transFat
-    document.getElementById('edit-cholesterol').value = foods[foodIndex].food.cholesterol
-    document.getElementById('edit-natrium').value = foods[foodIndex].food.natrium
-    document.getElementById('edit-potassium').value = foods[foodIndex].food.potassium
-    document.getElementById('edit-fibers').value = foods[foodIndex].food.fibers
-    document.getElementById('edit-sugar').value = foods[foodIndex].food.sugar
+    document.getElementById('edit-ean').value = foods[foodIndex].ean
+    document.getElementById('edit-brand-name').value = foods[foodIndex].brand
+    document.getElementById('edit-food-name').value = foods[foodIndex].name
+    document.getElementById('edit-calories').value = foods[foodIndex].calories
+    document.getElementById('edit-protein').value = foods[foodIndex].protein
+    document.getElementById('edit-carbohydrate').value = foods[foodIndex].carbohydrate
+    document.getElementById('edit-fat').value = foods[foodIndex].fat
+    document.getElementById('edit-saturated-fat').value = foods[foodIndex].saturatedFat
+    document.getElementById('edit-multiple-unsaturated-fat').value = foods[foodIndex].multipleUnsaturatedFat
+    document.getElementById('edit-basic-unsaturated-fat').value = foods[foodIndex].basicUnsaturatedFat
+    document.getElementById('edit-trans-fat').value = foods[foodIndex].transFat
+    document.getElementById('edit-cholesterol').value = foods[foodIndex].cholesterol
+    document.getElementById('edit-natrium').value = foods[foodIndex].natrium
+    document.getElementById('edit-potassium').value = foods[foodIndex].potassium
+    document.getElementById('edit-fibers').value = foods[foodIndex].fibers
+    document.getElementById('edit-sugar').value = foods[foodIndex].sugar
 }
 
 // Initialize the dish edit page

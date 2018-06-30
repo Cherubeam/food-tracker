@@ -11,25 +11,20 @@ let foods = []
 const loadFoods = () => {
     const foodsJSON = localStorage.getItem('foods')
 
+    /**
+     * @description The data loaded from localStorage have to be parsed again through the class constructor function to restore the Getters / Setters – all the logic – for each food instance.
+     */
     try {
         if (foodsJSON) {
             const parsedJSON = JSON.parse(foodsJSON)
             let foods = []
 
-            parsedJSON.forEach((foodObject) => {
-                let _id, _ean, createdAt, updatedAt, _brand, _name, _calories, _protein, _carbohydrate, _fat, _saturatedFat, _multipleUnsaturatedFat, _basicUnsaturatedFat, _transFat, _cholesterol, _natrium, _potassium, _fibers, _sugar, _portion, _portionUnit, _portionAmount, _names, _brands
-
-                ({ _id, _ean, createdAt, updatedAt, _brand, _name, _calories, _protein, _carbohydrate, _fat, _saturatedFat, _multipleUnsaturatedFat, _basicUnsaturatedFat, _transFat, _cholesterol, _natrium, _potassium, _fibers, _sugar, _portion, _portionUnit, _portionAmount, _names, _brands } = foodObject.food)
+            parsedJSON.forEach(foodObject => {
+                let { _id, _ean, createdAt, updatedAt, _brand, _name, _calories, _protein, _carbohydrate, _fat, _saturatedFat, _multipleUnsaturatedFat, _basicUnsaturatedFat, _transFat, _cholesterol, _natrium, _potassium, _fibers, _sugar, _portion, _portionUnit, _portionAmount, _names, _brands } = foodObject
 
                 const food = new Food(_id, _ean, createdAt, updatedAt, _brand, _name, _calories, _protein, _carbohydrate, _fat, _saturatedFat, _multipleUnsaturatedFat, _basicUnsaturatedFat, _transFat, _cholesterol, _natrium, _potassium, _fibers, _sugar, _portion, _portionUnit, _portionAmount, _names, _brands)
 
-                const meal = foodObject.meal // !!! Has to be removed since "meal" has to bereomved from create Food etc. and has renamed to "dish" !!!
-
-                foods.push({
-                    food,
-                    meal
-                })
-                console.log(foods)
+                foods.push(food)
             })
             return foods
 
@@ -41,25 +36,26 @@ const loadFoods = () => {
     }
 }
 
-// Save foods into localStorage
+// Create a food instance and save it into foods array
 const saveFoods = () => {
     localStorage.setItem('foods', JSON.stringify(foods))
 }
 
-// Add food to the foods object
+// Add a food to the foods array
 const createFood = food => {
     foods.push(food)
 
+    console.log(food)
     saveFoods()
     return food._id
 }
 
 // Update a food
 const updateFood = (foodId, elementId, newValue) => {
-    const foodIndex = foods.findIndex(index => index.food._id === foodId)
+    const foodIndex = foods.findIndex(food => food.id === foodId)
     console.log(foods)
     console.log('Food index: ' + foodIndex)
-    console.log('Food ID: ' + foods[foodIndex].food._id)
+    console.log('Food ID: ' + foods[foodIndex].id)
 
 
     if (foodIndex === -1) {
@@ -69,67 +65,67 @@ const updateFood = (foodId, elementId, newValue) => {
 
     switch (elementId) {
         case 'edit-ean':
-            foods[foodIndex].food.ean = newValue
+            foods[foodIndex].ean = newValue
             break
 
         case 'edit-brand-name':
-            foods[foodIndex].food.brand = newValue
+            foods[foodIndex].brand = newValue
             break
 
         case 'edit-food-name':
-            foods[foodIndex].food.name = newValue
+            foods[foodIndex].name = newValue
             break
 
         case 'edit-calories':
-            foods[foodIndex].food.calories = parseFloat(newValue)
+            foods[foodIndex].calories = parseFloat(newValue)
             break
 
         case 'edit-protein':
-            foods[foodIndex].food.protein = parseFloat(newValue)
+            foods[foodIndex].protein = parseFloat(newValue)
             break
 
         case 'edit-carbohydrate':
-            foods[foodIndex].food.carbohydrate = parseFloat(newValue)
+            foods[foodIndex].carbohydrate = parseFloat(newValue)
             break
 
         case 'edit-fat':
-            foods[foodIndex].food.fat = parseFloat(newValue)
+            foods[foodIndex].fat = parseFloat(newValue)
             break
 
         case 'edit-saturated-fat':
-            foods[foodIndex].food.saturatedFat = parseFloat(newValue)
+            foods[foodIndex].saturatedFat = parseFloat(newValue)
             break
 
         case 'edit-multiple-unsaturated-fat':
-            foods[foodIndex].food.multipleUnsaturatedFat = parseFloat(newValue)
+            foods[foodIndex].multipleUnsaturatedFat = parseFloat(newValue)
             break
 
         case 'edit-basic-unsaturated-fat':
-            foods[foodIndex].food.basicUnsaturatedFat = parseFloat(newValue)
+            foods[foodIndex].basicUnsaturatedFat = parseFloat(newValue)
             break
 
         case 'edit-trans-fat':
-            foods[foodIndex].food.transFat = parseFloat(newValue)
+            foods[foodIndex].transFat = parseFloat(newValue)
             break
 
         case 'edit-cholesterol':
-            foods[foodIndex].food.cholesterol = parseFloat(newValue)
+            foods[foodIndex].cholesterol = parseFloat(newValue)
             break
 
         case 'edit-natrium':
-            foods[foodIndex].food.natrium = parseFloat(newValue)
+            foods[foodIndex].natrium = parseFloat(newValue)
             break
 
         case 'edit-potassium':
-            foods[foodIndex].food.potassium = parseFloat(newValue)
+            foods[foodIndex].potassium = parseFloat(newValue)
             break
 
         case 'edit-fibers':
-            foods[foodIndex].food.fibers = parseFloat(newValue)
+            foods[foodIndex].fibers = parseFloat(newValue)
             break
 
         case 'edit-sugar':
-            foods[foodIndex].food.sugar = parseFloat(newValue)
+            foods[foodIndex].sugar = parseFloat(newValue)
             break
 
         default:
@@ -140,7 +136,7 @@ const updateFood = (foodId, elementId, newValue) => {
 
 // Remove a food
 const removeFood = foodId => {
-    const foodIndex = foods.findIndex(index => index.food._id === foodId)
+    const foodIndex = foods.findIndex(food => food.id === foodId)
 
     if (foodIndex > -1) {
         foods.splice(foodIndex, 1)
@@ -148,7 +144,7 @@ const removeFood = foodId => {
     }
 }
 
-// Get the foods object
+// Expose foods from module
 const getFoods = () => foods
 
 // Reset food input form

@@ -37,7 +37,7 @@ const removeDish = id => {
 
 }
 
-// Get the dishes object
+// Expose dishes from module
 const getDishes = () => dishes
 
 // Reset dish input form
