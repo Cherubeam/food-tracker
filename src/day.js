@@ -2,7 +2,7 @@ import moment from 'moment'
 import { throwIfMealInvalid } from './errorMessages'
 
 class Day {
-    constructor(timestamp, day, week, weekday, month, year, date, breakfast, lunch, dinner, snack) {
+    constructor(timestamp, day, weekday, week, month, year, date, breakfast, lunch, dinner, snack) {
         this._timestamp = timestamp || moment().valueOf()
         this._day = day || moment().format('DD')
         this._weekday = weekday || moment().format('dddd')

@@ -26,6 +26,7 @@ const loadFoods = () => {
 
                 foods.push(food)
             })
+            
             return foods
 
         } else {
@@ -65,7 +66,7 @@ const updateFood = (foodId, elementId, newValue) => {
 
     switch (elementId) {
         case 'edit-ean':
-            foods[foodIndex].ean = newValue
+            foods[foodIndex].ean = parseInt(newValue)
             break
 
         case 'edit-brand-name':

@@ -31,6 +31,9 @@ const loadDays = () => {
             })
 
             return days
+
+        } else {
+            return []
         }
     } catch (error) {
         return []
@@ -51,7 +54,7 @@ const createDay = today => {
          */
         if (days.length > 0) {
             days.forEach(dayObject => {
-                if (dayObject._date === today.date) { // !!! TODO: Adapt dayObject._date to dayObject.date after implementing parsing days objects through Day class again !!!
+                if (dayObject.date === today.date) {
                     console.log('Day object already exists within days array!')
                 } else {
                     days.push(today)
