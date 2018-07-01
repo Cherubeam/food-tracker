@@ -11,9 +11,6 @@ import { throwIfFoodNameMissing, throwIfDishNameMissing, throwIfCaloriesMissing,
 const today = new Day()
 createDay(today)
 
-console.log('-+-+-+-+- Create today instance at index.js +-+-+-+-')
-console.log(today)
-
 // Render today intially
 renderToday()
 

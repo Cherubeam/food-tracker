@@ -103,7 +103,7 @@ const renderToday = () => {
 const renderFoods = () => {
     const groceriesElement = document.querySelector('#groceries')
     const foods = getFoods()
-    console.log(foods)
+
     groceriesElement.innerHTML = ''
 
     foods.forEach(food => {

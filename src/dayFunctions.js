@@ -1,4 +1,4 @@
-import { Day } from './day'
+import Day from './day'
 
 let days = []
 
@@ -19,22 +19,15 @@ const loadDays = () => {
             let days = []
 
             parsedJSON.forEach(dayObject => {
-                console.log('WAZZUUUUP')
+                let { _timestamp, _day, _weekday, _week, _month, _year, _date, _meals: { breakfast, lunch, dinner, snack } } = dayObject
 
-                // BAUSTELLE
-                let { _timestamp, _day, _weekday, _week, _month, _year, _date, _meals: { breakfast, dinner, lunch, snack } } = dayObject
+                console.log(_timestamp, _day, _weekday, _week, _month, _year, _date, breakfast, lunch, dinner, snack)
 
+                const day = new Day(_timestamp, _day, _weekday, _week, _month, _year, _date, breakfast, lunch, dinner, snack)
 
-                console.log('Weekday') // Hier hakt es
-
-                const day = new Day(_timestamp, _day, _weekday, _week, _month, _year, _date, _meals.breakfast, _meals.dinner, _meals.lunch, _meals.snack)
-
-                console.log('YOOOOO')
+                // BUG?: Now my avoid logic (duplicate creation of the same day within days array) will be triggered...
 
                 days.push(day)
-
-                console.log('+++++ PARSED days array +++++')
-                console.log(days)
             })
 
             return days
@@ -42,12 +35,6 @@ const loadDays = () => {
     } catch (error) {
         return []
     }
-
-    // try {
-    //     return daysJSON ? JSON.parse(daysJSON) : []
-    // } catch (error) {
-    //     return []
-    // }
 }
 
 // Save a day into localStorage

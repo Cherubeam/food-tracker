@@ -2,20 +2,20 @@ import moment from 'moment'
 import { throwIfMealInvalid } from './errorMessages'
 
 class Day {
-    constructor(timestamp, day, week, month, year, date) {
+    constructor(timestamp, day, week, weekday, month, year, date, breakfast, lunch, dinner, snack) {
         this._timestamp = timestamp || moment().valueOf()
         this._day = day || moment().format('DD')
-        this._weekday = day || moment().format('dddd')
+        this._weekday = weekday || moment().format('dddd')
         this._week = week || moment().format('W')
         this._month = month || moment().format('MM')
         this._year = year || moment().format('GGGG')
         this._date = date || `${this._day}.${this._month}.${this._year}`
         this._meals = {
-            breakfast: [],
-            lunch: [],
-            dinner: [],
-            snack: []
-        }
+            breakfast: breakfast || [],
+            lunch: lunch || [],
+            dinner: dinner || [],
+            snack: snack || []
+        } 
     }
 
     get day() {
