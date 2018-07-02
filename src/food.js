@@ -109,6 +109,14 @@ class Food {
         }
     }
 
+    get fromNow() {
+        if (this.createdAt <= this.updatedAt) {
+            return moment(this.createdAt).fromNow()
+        } else {
+            return moment(this.updatedAt).fromNow()
+        }
+    }
+
     set ean(value) {
         if (typeof value === 'number') {
             this._ean = value

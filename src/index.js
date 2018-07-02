@@ -7,6 +7,10 @@ import { createDay, updateDay } from './dayFunctions'
 import { renderToday, renderFoods, renderDishes } from './views'
 import { throwIfFoodNameMissing, throwIfDishNameMissing, throwIfCaloriesMissing, throwIfProteinMissing, throwIfCarbohydrateMissing, throwIfFatMissing } from './errorMessages'
 
+/**
+ * @description Rendering
+ */
+
 // Create today instance as starting point
 const today = new Day()
 createDay(today)
@@ -20,28 +24,9 @@ renderFoods()
 // Render dished initially
 renderDishes()
 
-// Add food to today object and save it
-document.querySelector('#add-food-today').addEventListener('submit', e => {
-
-	e.preventDefault()
-
-	// Getting the values of the select fields
-	const selectedMeal = document.getElementById('select-meal')
-	const selectedMealText = selectedMeal.options[selectedMeal.selectedIndex].text
-	const selectedFood = document.getElementById('select-food-today')
-	const selectedFoodText = selectedFood.options[selectedFood.selectedIndex].text
-	const foods = getFoods()
-	let food
-
-	foods.forEach(element => {
-		if (selectedFoodText === element.name) {
-			food = element.food
-		}
-	})
-
-	updateDay(food, selectedMealText)
-	renderToday()
-})
+/**
+ * @description Event listener 
+ */
 
 // Add food and save it
 document.querySelector('#add-food').addEventListener('submit', e => {
@@ -103,8 +88,8 @@ document.querySelector('#add-dish').addEventListener('submit', e => {
 	let foodId
 
 	foods.forEach(food => {
-		if (selectedFoodText === food.food._name) {
-			foodId = food.food._id
+		if (selectedFoodText === food._name) {
+			foodId = food._id
 		}
 	})
 
@@ -119,4 +104,33 @@ document.querySelector('#add-dish').addEventListener('submit', e => {
 	createDish(dish)
 	resetDishForm(e)
 	renderDishes()
+})
+
+// Add food to today object and save it
+document.querySelector('#add-food-today').addEventListener('submit', e => {
+
+	e.preventDefault()
+
+	// Getting the values of the select fields
+	const selectedMeal = document.getElementById('select-meal')
+	const selectedMealText = selectedMeal.options[selectedMeal.selectedIndex].text
+	const selectedFood = document.getElementById('select-food-today')
+	const selectedFoodText = selectedFood.options[selectedFood.selectedIndex].text
+	const foods = getFoods()
+	let foodObject
+
+	foods.forEach(food => {
+		if (selectedFoodText === food.name) {
+			foodObject = food
+		}
+	})
+
+	console.log('++ Food Object ++')
+	console.log(foodObject)
+
+	console.log('+++++++++++')
+	console.log(foods)
+
+	updateDay('02.07.2018', foodObject, selectedMealText)
+	renderToday()
 })

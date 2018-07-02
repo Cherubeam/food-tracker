@@ -28,12 +28,12 @@ const createDish = (dish) => {
 }
 
 // Update a dish
-const updateDish = (id, update) => {
+const updateDish = (dishId, update) => {
 
 }
 
 // Remove a dish
-const removeDish = id => {
+const removeDish = dishId => {
 
 }
 

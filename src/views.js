@@ -18,6 +18,7 @@ const generateTodayDOM = () => {
 const generateFoodDOM = food => {
     const foodElement = document.createElement('a')
     const nameElement = document.createElement('p')
+    const lastUpdatedElement = document.createElement('p')
     const macrosElement = document.createElement('ul')
     const proteinElement = document.createElement('li')
     const carbohydrateElement = document.createElement('li')
@@ -26,6 +27,10 @@ const generateFoodDOM = food => {
     // Display the food name
     nameElement.textContent = food._name
     foodElement.appendChild(nameElement)
+
+    // Display the last update
+    lastUpdatedElement.textContent = food.fromNow
+    foodElement.appendChild(lastUpdatedElement)
 
     // Display the macronutrients
     proteinElement.textContent = `Protein: ${food.protein}g`
