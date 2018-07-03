@@ -7,7 +7,7 @@ const generateTodayDOM = () => {
     const today = getDays()
     const todayElement = document.createElement('a')
     const todayDateElement = document.createElement('p') 
-    todayDateElement.textContent = `${today[0]._weekday}, ${today[0]._date}` // Adapt to .weekday, .date after implementing the parsing into the class constructure function
+    todayDateElement.textContent = `${today[today.length-1].weekday}, ${today[today.length-1].date}`
 
     todayElement.appendChild(todayDateElement)
 

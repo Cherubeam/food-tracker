@@ -63,7 +63,6 @@ const createDay = today => {
         } else {
             days.push(today)
         }
-
     } 
 
     saveDays()
@@ -84,14 +83,26 @@ const updateDay = (date, food, meal) => {
     saveDays()
 }
 
+// !!! TODO: Has to be tested !!!
 // Remove an entire day object
 const removeDay = date => {
-
+    days.forEach((dayObject, index) => {
+        if (dayObject.date === date) {
+            days.splice(index, 1)
+        } else {
+            console.log('dayObject not found') // TODO: Has to be adapted / replaced through a proper error message.
+        }
+    })
 }
 
-// Remove a meal from day object
-const removeMeal = foodId => {
-    
+// !!! TODO: Has to be tested !!!
+// Remove a food from a meal from day object
+const removeFoodFromMeal = (date, meal, foodId) => {
+    days.forEach(dayObject => {
+        if (dayObject.date === date) {
+            ///
+        }
+    })
 }
 
 // Expose days from module
