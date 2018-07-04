@@ -114,6 +114,8 @@ document.querySelector('#add-food-today').addEventListener('submit', e => {
 	// Getting the values of the select fields
 	const selectedMeal = document.getElementById('select-meal')
 	const selectedMealText = selectedMeal.options[selectedMeal.selectedIndex].text
+
+	// !!! Something has to be changed due to creating duplicate food entries within dropdown menu. !!!
 	const selectedFood = document.getElementById('select-food-today')
 	const selectedFoodText = selectedFood.options[selectedFood.selectedIndex].text
 	const foods = getFoods()
@@ -125,12 +127,6 @@ document.querySelector('#add-food-today').addEventListener('submit', e => {
 		}
 	})
 
-	console.log('++ Food Object ++')
-	console.log(foodObject)
-
-	console.log('+++++++++++')
-	console.log(foods)
-
-	updateDay('02.07.2018', foodObject, selectedMealText)
+	updateDay('04.07.2018', foodObject, selectedMealText)
 	renderToday()
 })

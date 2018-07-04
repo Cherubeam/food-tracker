@@ -2,14 +2,65 @@ import { getFoods, removeFood } from './foodFunctions'
 import { getDishes } from './dishFunctions'
 import { getDays } from './dayFunctions'
 
+/**
+ * @description Generating the DOM structures
+ */
+
 // Generate the DOM structure for today
 const generateTodayDOM = () => {
     const today = getDays()
     const todayElement = document.createElement('a')
-    const todayDateElement = document.createElement('p') 
-    todayDateElement.textContent = `${today[today.length-1].weekday}, ${today[today.length-1].date}`
+    const todayDateElement = document.createElement('p')
+    const mealElement = document.createElement('div')
+    const breakfastElement = document.createElement('div')
+    const lunchElement = document.createElement('div')
+    const dinnerElement = document.createElement('div')
+    const snackElement = document.createElement('div')
 
+    // Display the current weekday and date
+    todayDateElement.textContent = `${today[today.length-1].weekday}, ${today[today.length-1].date}`
     todayElement.appendChild(todayDateElement)
+
+    // Display the meals of the current day
+    breakfastElement.textContent = 'Breakfast'
+    lunchElement.textContent = 'Lunch'
+    dinnerElement.textContent = 'Dinner'
+    snackElement.textContent = 'Snack'
+
+    const breakfast = today[today.length-1].meals.breakfast
+    const lunch = today[today.length - 1].meals.lunch
+    const dinner = today[today.length - 1].meals.dinner
+    const snack = today[today.length - 1].meals.snack
+
+    breakfast.forEach(foodObject => {
+        const foodElement = document.createElement('p')
+        foodElement.textContent = foodObject._name
+        breakfastElement.appendChild(foodElement)
+    })
+
+    lunch.forEach(foodObject => {
+        const foodElement = document.createElement('p')
+        foodElement.textContent = foodObject._name
+        lunchElement.appendChild(foodElement)
+    })
+
+    dinner.forEach(foodObject => {
+        const foodElement = document.createElement('p')
+        foodElement.textContent = foodObject._name
+        dinnerElement.appendChild(foodElement)
+    })
+
+    snack.forEach(foodObject => {
+        const foodElement = document.createElement('p')
+        foodElement.textContent = foodObject._name
+        snackElement.appendChild(foodElement)
+    })
+
+    mealElement.appendChild(breakfastElement)
+    mealElement.appendChild(lunchElement)
+    mealElement.appendChild(dinnerElement)
+    mealElement.appendChild(snackElement)
+    todayElement.appendChild(mealElement)
 
     return todayElement
 }
@@ -49,9 +100,11 @@ const generateFoodDOM = food => {
 
 // Generate the DOM structure for the dish dropdown menu
 const generateFoodDropdownDOM = (foods, querySelector) => {
+    const selectElement = document.querySelector(querySelector)
+    selectElement.innerHTML = ''
+
     foods.forEach(food => {
         const optionElement = document.createElement('option')
-        const selectElement = document.querySelector(querySelector)
 
         optionElement.textContent = food.name
         optionElement.value = food.id
@@ -69,7 +122,7 @@ const generateDishDOM = (dish, foods) => {
 
     // Get every food added to the dish and add it to the DOM
     foods.forEach(food => {
-        dish._foodIds.forEach(foodId => { // !!! _foodIds has to be changed to foodIds after Getters / Setters are working !!!
+        dish._foodIds.forEach(foodId => { // !!! _foodIds etc. has to be changed to foodIds after Getters / Setters are working !!!
             if (foodId === food._id) {
                 const foodElement = generateFoodDOM(food)
                 foodListElement.appendChild(foodElement)
@@ -91,17 +144,21 @@ const generateDishDOM = (dish, foods) => {
     return dishElement
 }
 
+/**
+ * @description Rendering
+ */
+
 // Render today
 const renderToday = () => {
-    const todayElement = document.querySelector('#today')
+    const todayElement = document.querySelector('#today-list-food')
     const foods = getFoods()
-    // getDays()
 
     todayElement.innerHTML = ''
     const todayDOMElement = generateTodayDOM()
     todayElement.appendChild(todayDOMElement)
 
     generateFoodDropdownDOM(foods, '#select-food-today')
+
 }
 
 // Render the foods
@@ -115,6 +172,7 @@ const renderFoods = () => {
         const foodElement = generateFoodDOM(food)
         groceriesElement.appendChild(foodElement)
 
+        // Render a delete button for each food
         const deleteButtonElement = deleteButton(food)
         groceriesElement.appendChild(deleteButtonElement)
     })

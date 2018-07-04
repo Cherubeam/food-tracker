@@ -26,7 +26,7 @@ const loadFoods = () => {
 
                 foods.push(food)
             })
-            
+
             return foods
 
         } else {
@@ -46,9 +46,8 @@ const saveFoods = () => {
 const createFood = food => {
     foods.push(food)
 
-    console.log(food)
     saveFoods()
-    return food._id
+    return food.id
 }
 
 // Update a food
