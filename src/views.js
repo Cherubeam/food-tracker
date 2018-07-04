@@ -98,7 +98,7 @@ const generateFoodDOM = food => {
     return foodElement
 }
 
-// Generate the DOM structure for the dish dropdown menu
+// Generate the DOM structure for the food dropdown menu
 const generateFoodDropdownDOM = (foods, querySelector) => {
     const selectElement = document.querySelector(querySelector)
     selectElement.innerHTML = ''
@@ -227,7 +227,7 @@ const deleteButton = (food) => {
     const deleteButtonElement = document.createElement('button')
     deleteButtonElement.textContent = 'Delete'
     deleteButtonElement.addEventListener('click', e => {
-        removeFood(food.food._id)
+        removeFood(food.id)
         location.assign('/index.html')
     })
 

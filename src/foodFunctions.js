@@ -59,7 +59,7 @@ const updateFood = (foodId, elementId, newValue) => {
 
 
     if (foodIndex === -1) {
-        throwIfIndexNotFound()
+        throwIfIndexNotFound(foodId)
         return
     }
 
@@ -141,6 +141,8 @@ const removeFood = foodId => {
     if (foodIndex > -1) {
         foods.splice(foodIndex, 1)
         saveFoods()
+    } else {
+        throwIfIndexNotFound(foodId)
     }
 }
 
