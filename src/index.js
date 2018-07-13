@@ -8,7 +8,7 @@ import { renderToday, renderFoods, renderDishes } from './views'
 import { throwIfFoodNameMissing, throwIfDishNameMissing, throwIfCaloriesMissing, throwIfProteinMissing, throwIfCarbohydrateMissing, throwIfFatMissing } from './errorMessages'
 
 /**
- * @description Rendering
+ * @description Initial Rendering
  */
 
 // Create today instance as starting point
@@ -127,6 +127,6 @@ document.querySelector('#add-food-today').addEventListener('submit', e => {
 		}
 	})
 
-	updateDay('04.07.2018', foodObject, selectedMealText)
+	updateDay('06.07.2018', foodObject, selectedMealText) // !!! TODO: The date has to be set automatically / selected by a dropdown menu
 	renderToday()
 })

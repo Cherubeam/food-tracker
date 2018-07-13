@@ -25,7 +25,7 @@ const loadDays = () => {
 
                 const day = new Day(_timestamp, _day, _weekday, _week, _month, _year, _date, breakfast, lunch, dinner, snack)
 
-                // BUG?: Now my avoid logic (duplicate creation of the same day within days array) will be triggered...
+                // BUG: Now my avoid logic (duplicate creation of the same day within days array) will be triggered...
 
                 days.push(day)
             })
@@ -56,12 +56,16 @@ const createDay = today => {
             days.forEach(dayObject => {
                 if (dayObject.date === today.date) {
                     console.log('Day object already exists within days array!')
+                    console.log('++++++++++++++++++')
+                    console.log(dayObject.date)
                 } else {
                     days.push(today)
+                    console.log('dayObject.date === today.date (inner else) loop')
                 }
             })
         } else {
             days.push(today)
+            console.log('days.length (outer else) loop')
         }
     } 
 

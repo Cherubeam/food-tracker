@@ -10,8 +10,10 @@
 	</head>
 
 	<body>
-		<header>
-			<h1>Incredible Food Tracker</h1>
+		<header class="header">
+			<div class="container">
+				<h1 class="header__title">Incredible Food Tracker</h1>
+			</div>
 		</header>
 
 		<div>
@@ -27,19 +29,19 @@
 				</label>
 				<label>
 					Calories
-					<input id="add-calories" type="number" min="0" step="0.1" placeholder="0.0" name="calories">
+					<input id="add-calories" type="number" min="0" step="0.1" placeholder="0,0" name="calories">
 				</label>
 				<label>
 					Protein
-					<input id="add-protein" type="number" min="0" step="0.1" placeholder="0.0" name="protein">
+					<input id="add-protein" type="number" min="0" step="0.1" placeholder="0,0" name="protein">
 				</label>
 				<label>
 					Carbohydrate
-					<input id="add-carbohydrate" type="number" min="0" step="0.1" placeholder="0.0" name="carbohydrate">
+					<input id="add-carbohydrate" type="number" min="0" step="0.1" placeholder="0,0" name="carbohydrate">
 				</label>
 				<label>
 					Fat
-					<input id="add-fat" type="number" min="0" step="0.1" placeholder="0.0" name="fat">
+					<input id="add-fat" type="number" min="0" step="0.1" placeholder="0,0" name="fat">
 				</label>
 				<input type="submit" value="Save">
 				<input id="reset-add-food" type="reset" value="Reset">

@@ -1,4 +1,30 @@
+/* Base Styles */
+
 * {
+    box-sizing: border-box;
+    /* margin: 0;
+    padding: 0; */
+}
+
+body {
 	font-family: Helvetica, sans-serif;
 	background-color: ghostwhite;
+}
+
+/* Container */
+
+.container {
+	max-width: 60rem;
+}
+
+/* Header */
+
+.header {
+	background: #61ce66;
+	color: white;
+	padding: 1rem;
+}
+
+.header__title {
+	font-size: 2rem;
 }

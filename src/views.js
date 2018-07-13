@@ -76,7 +76,7 @@ const generateFoodDOM = food => {
     const fatElement = document.createElement('li')
 
     // Display the food name
-    nameElement.textContent = food._name
+    nameElement.textContent = food.name
     foodElement.appendChild(nameElement)
 
     // Display the last update
@@ -93,7 +93,7 @@ const generateFoodDOM = food => {
     foodElement.appendChild(macrosElement)
 
     // Setup the link for the food edit page
-    foodElement.setAttribute('href', `/edit-food.html#${food._id}`)
+    foodElement.setAttribute('href', `/edit-food.html#${food.id}`)
 
     return foodElement
 }
@@ -106,7 +106,7 @@ const generateFoodDropdownDOM = (foods, querySelector) => {
     foods.forEach(food => {
         const optionElement = document.createElement('option')
 
-        optionElement.textContent = food.name
+        optionElement.textContent = `${food.brand}: ${food.name}`
         optionElement.value = food.id
 
         selectElement.appendChild(optionElement)
