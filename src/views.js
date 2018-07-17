@@ -1,3 +1,4 @@
+import moment from 'moment'
 import { getFoods, removeFood } from './foodFunctions'
 import { getDishes } from './dishFunctions'
 import { getDays } from './dayFunctions'
@@ -18,7 +19,7 @@ const generateTodayDOM = () => {
     const snackElement = document.createElement('div')
 
     // Display the current weekday and date
-    todayDateElement.textContent = `${today[today.length-1].weekday}, ${today[today.length-1].date}`
+    todayDateElement.textContent = `${moment().format('dddd')}, ${moment().format('DD.MM.GGGG')}`
     todayElement.appendChild(todayDateElement)
 
     // Display the meals of the current day

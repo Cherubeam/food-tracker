@@ -55,7 +55,7 @@ const createDay = today => {
         let dayExists = []
 
         if (days.length > 0) {
-            dayExists = days.filter(dayObject => dayObject.date === '17.07.2018')
+            dayExists = days.filter(dayObject => dayObject.date === today.date)
 
             if (dayExists.length === 0) {
                 days.push(today)
