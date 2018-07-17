@@ -21,7 +21,7 @@ const loadDays = () => {
             parsedJSON.forEach(dayObject => {
                 let { _timestamp, _day, _weekday, _week, _month, _year, _date, _meals: { breakfast, lunch, dinner, snack } } = dayObject
 
-                console.log(_timestamp, _day, _weekday, _week, _month, _year, _date, breakfast, lunch, dinner, snack)
+                // console.log(_timestamp, _day, _weekday, _week, _month, _year, _date, breakfast, lunch, dinner, snack)
 
                 const day = new Day(_timestamp, _day, _weekday, _week, _month, _year, _date, breakfast, lunch, dinner, snack)
 
@@ -52,22 +52,19 @@ const createDay = today => {
         /**
          * @description Check days array for an object with date of today. If object with date of today exists, do nothing. If not, push current day (today) to days array. The check for days.length is needed since forEach doesn't work for an empty array.
          */
+        let dayExists = []
+
         if (days.length > 0) {
-            days.forEach(dayObject => {
-                if (dayObject.date === today.date) {
-                    console.log('Day object already exists within days array!')
-                    console.log('++++++++++++++++++')
-                    console.log(dayObject.date)
-                } else {
-                    days.push(today)
-                    console.log('dayObject.date === today.date (inner else) loop')
-                }
-            })
+            dayExists = days.filter(dayObject => dayObject.date === '17.07.2018')
+
+            if (dayExists.length === 0) {
+                days.push(today)
+            }
+
         } else {
             days.push(today)
-            console.log('days.length (outer else) loop')
         }
-    } 
+    }
 
     saveDays()
 }
