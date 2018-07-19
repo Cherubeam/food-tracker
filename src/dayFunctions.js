@@ -21,11 +21,7 @@ const loadDays = () => {
             parsedJSON.forEach(dayObject => {
                 let { _timestamp, _day, _weekday, _week, _month, _year, _date, _meals: { breakfast, lunch, dinner, snack } } = dayObject
 
-                // console.log(_timestamp, _day, _weekday, _week, _month, _year, _date, breakfast, lunch, dinner, snack)
-
                 const day = new Day(_timestamp, _day, _weekday, _week, _month, _year, _date, breakfast, lunch, dinner, snack)
-
-                // BUG: Now my avoid logic (duplicate creation of the same day within days array) will be triggered...
 
                 days.push(day)
             })
@@ -72,16 +68,17 @@ const createDay = today => {
 // Update a day instance
 const updateDay = (date, food, meal) => {
     // !!! TODO: Currently I want to check if a given date argument has a respective day object within days array. If yes, go on with the update process. If not we have to create a new date object for the given date via Day class. But currently this class is not able to add a day for a specific date. This has to be adapted in future. For now, I just gonna write the if statement. The else statement has to have the adaptions mentioned above, but later. !!!
-    
+    console.log(food)
     days.forEach(dayObject => {
         if (dayObject.date === date) {
             dayObject.setMeal(food, meal)
+            saveDays()
         } else {
             console.log('dayObject not found') // TODO: Has to be adapted like mentioned above.
         }
     })
 
-    saveDays()
+
 }
 
 // !!! TODO: Has to be tested !!!

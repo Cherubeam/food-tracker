@@ -27,33 +27,33 @@ const generateTodayDOM = () => {
     lunchElement.textContent = 'Lunch'
     dinnerElement.textContent = 'Dinner'
     snackElement.textContent = 'Snack'
-
-    const breakfast = today[today.length-1].meals.breakfast
+console.log(today)
+    const breakfast = today[today.length - 1].meals.breakfast
     const lunch = today[today.length - 1].meals.lunch
     const dinner = today[today.length - 1].meals.dinner
     const snack = today[today.length - 1].meals.snack
 
     breakfast.forEach(foodObject => {
         const foodElement = document.createElement('p')
-        foodElement.textContent = foodObject._name
+        foodElement.textContent = foodObject.name
         breakfastElement.appendChild(foodElement)
     })
 
     lunch.forEach(foodObject => {
         const foodElement = document.createElement('p')
-        foodElement.textContent = foodObject._name
+        foodElement.textContent = foodObject.name
         lunchElement.appendChild(foodElement)
     })
 
     dinner.forEach(foodObject => {
         const foodElement = document.createElement('p')
-        foodElement.textContent = foodObject._name
+        foodElement.textContent = foodObject.name
         dinnerElement.appendChild(foodElement)
     })
 
     snack.forEach(foodObject => {
         const foodElement = document.createElement('p')
-        foodElement.textContent = foodObject._name
+        foodElement.textContent = foodObject.name
         snackElement.appendChild(foodElement)
     })
 

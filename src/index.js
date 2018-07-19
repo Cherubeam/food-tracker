@@ -115,18 +115,18 @@ document.querySelector('#add-food-today').addEventListener('submit', e => {
 	const selectedMeal = document.getElementById('select-meal')
 	const selectedMealText = selectedMeal.options[selectedMeal.selectedIndex].text
 
-	// !!! Something has to be changed due to creating duplicate food entries within dropdown menu. !!!
+	// !!! TODO: Something has to be changed due to creating duplicate food entries within dropdown menu. !!!
 	const selectedFood = document.getElementById('select-food-today')
 	const selectedFoodText = selectedFood.options[selectedFood.selectedIndex].text
 	const foods = getFoods()
 	let foodObject
 
 	foods.forEach(food => {
-		if (selectedFoodText === food.name) {
+		if (selectedFoodText === `${food.brand}: ${food.name}`) {
 			foodObject = food
 		}
 	})
 
-	updateDay('06.07.2018', foodObject, selectedMealText) // !!! TODO: The date has to be set automatically / selected by a dropdown menu
+	updateDay('19.07.2018', foodObject, selectedMealText) // !!! TODO: The date has to be set automatically / selected by a dropdown menu
 	renderToday()
 })
