@@ -71,6 +71,7 @@ document.querySelector('#add-food').addEventListener('submit', e => {
 
 	createFood(food)
 	resetFoodForm(e)
+	renderToday()
 	renderFoods()
 	renderDishes()
 })
